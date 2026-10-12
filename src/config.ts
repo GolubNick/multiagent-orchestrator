@@ -6,6 +6,7 @@ export interface AppConfig {
   worker: ProviderConfig;
   aggregator: ProviderConfig;
   concurrency: number;
+  maxTurns: number;
   skillsDir: string;
 }
 
@@ -29,6 +30,7 @@ export function loadConfig(): AppConfig {
     worker: providerFromEnv("WORKER", env),
     aggregator: providerFromEnv("AGGREGATOR", env),
     concurrency: Number(env.CONCURRENCY ?? "2"),
+    maxTurns: Number(env.MAX_TURNS ?? "40"),
     skillsDir: env.SKILLS_DIR ?? "skills",
   };
 }

@@ -19,6 +19,7 @@ export class Orchestrator {
   constructor(
     private readonly agents: SkillAgentSet,
     private readonly concurrency = 4,
+    private readonly maxTurns = 40,
   ) {
     this.runner = new Runner({ tracingDisabled: true });
   }
@@ -118,7 +119,7 @@ export class Orchestrator {
 
   private async call(agent: Agent, input: string): Promise<string> {
     await paceModelCall();
-    const result = await this.runner.run(agent, input);
+    const result = await this.runner.run(agent, input, { maxTurns: this.maxTurns });
     const output = result.finalOutput;
     return typeof output === "string" ? output : output == null ? "" : String(output);
   }

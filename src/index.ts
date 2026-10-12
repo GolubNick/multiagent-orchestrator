@@ -60,7 +60,7 @@ async function main(): Promise<void> {
   for (const skill of selected) {
     console.log(`\n========== SKILL: ${skill.name} ==========`);
     const agents = buildAgents(config, skill, runDir);
-    const orchestrator = new Orchestrator(agents, config.concurrency);
+    const orchestrator = new Orchestrator(agents, config.concurrency, config.maxTurns);
 
     const result = await orchestrator.run(task, priorContext);
 

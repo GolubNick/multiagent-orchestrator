@@ -62,7 +62,14 @@ AGGREGATOR_BASE_URL=
 AGGREGATOR_API_KEY=
 
 CONCURRENCY=1
+MAX_TURNS=40
+SKILLS_DIR=skills
 ```
+
+- `*_PROVIDER`: `openai` (any OpenAI-compatible API) or `ollama`.
+- `CONCURRENCY`: how many subtasks run in parallel (1-2 avoids rate limits).
+- `MAX_TURNS`: agent turn budget per phase. Raise it for long tool-driven phases
+  (e.g. test generation); the previous default of 10 caused `Max turns exceeded`.
 
 To create issues in Jira (`jira-scope`), add:
 
